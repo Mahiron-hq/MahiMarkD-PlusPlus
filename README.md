@@ -2,9 +2,9 @@
 
 # MahiMarkD++
 
-**Fast Markdown preview for Notepad++ that stays smooth on large files**
+**Fast, lightweight Markdown preview for Notepad++, written in Rust**
 <br>
-**Быстрый предпросмотр Markdown для Notepad++, который не тормозит на больших файлах**
+**Быстрый и лёгкий предпросмотр Markdown для Notepad++, написанный на Rust**
 
 [![Release](https://img.shields.io/github/v/release/Mahiron-hq/MahiMarkD-PlusPlus?style=flat-square&label=release)](https://github.com/Mahiron-hq/MahiMarkD-PlusPlus/releases/latest)
 [![License](https://img.shields.io/badge/license-GPL--3.0-blue?style=flat-square)](LICENSE)
@@ -21,32 +21,59 @@
 
 ## 🇬🇧 English
 
-MahiMarkD++ renders the current document in a dockable panel next to the editor and keeps it in sync while you type and scroll. Rendering runs on a background thread and only changed blocks are updated, so even a 10 MB file stays responsive.
+MahiMarkD++ shows the rendered document in a panel next to the editor and keeps it in sync while you type and scroll. It is native code written in Rust and ships as a single DLL with everything inside.
 
-![MahiMarkD++ with the light theme](docs/screenshot-light.png)
+![Editor and preview side by side](docs/screenshot-light.png)
+
+### Why MahiMarkD++
+
+- **Native and lightweight.** Written in Rust: native speed and memory safety with no garbage collector. One 3 MB DLL holds the renderer, highlight.js, KaTeX and fonts. It needs no .NET, Java, Python or Visual C++ runtime, and no installer.
+- **The editor never waits.** Markdown is parsed on a background thread, and only the blocks you changed are updated on the page. A 10 MB file of 200,000 lines first renders in about 0.75 s, and edits show up in about 0.4 s.
+- **Modern rendering.** The preview uses Microsoft Edge WebView2 (Chromium), so tables, fonts, emoji and high-DPI screens look the same as in a current browser.
+- **Private and offline.** No telemetry and no online services. The only network requests are images your document links to.
+- **Safe with untrusted files.** Raw HTML is sanitized, scripts from the document never run, and the page can load only the plugin's own files.
+- **Export without extra tools.** HTML, PDF and Word (DOCX) are built in. You don't need Pandoc, Word or a separate browser.
 
 ### Features
 
-- GitHub Flavored Markdown: tables, task lists, strikethrough, footnotes, alerts (`> [!NOTE]`), YAML front matter, heading anchors.
-- Syntax highlighting for code blocks (highlight.js) with a copy button.
-- Math with KaTeX: `$inline$`, `$$display$$` and ```` ```math ```` blocks.
-- Two-way scroll sync with the editor; click in the preview to move the caret to that line.
-- Table of contents sidebar that follows the scroll position.
-- Find in preview (Ctrl+F, F3, Shift+F3), zoom (Ctrl+wheel, Ctrl+Plus, Ctrl+Minus, Ctrl+0).
-- Local images and relative links; links to other files open in Notepad++, web links open in the browser.
-- Raw HTML is allowed but sanitized: scripts, event handlers and unsafe URLs are removed.
-- Light and dark themes; the Auto theme follows the colors of the Notepad++ editor theme.
-- Export to HTML (self-contained, with highlighting and math), PDF and Word (DOCX).
-- Opens automatically for Markdown files (configurable).
-- Built for large documents: incremental updates, lazy highlighting and math rendering, off-screen content is not laid out.
+#### Markdown
 
-![MahiMarkD++ with the dark theme](docs/screenshot-dark.png)
+- GitHub Flavored Markdown: tables, task lists, strikethrough, footnotes, alerts (`> [!NOTE]`), YAML front matter, heading anchors.
+- Syntax highlighting for code blocks with a copy button.
+- Math with KaTeX: `$inline$`, `$$display$$` and ```` ```math ```` blocks.
+- Local images and relative links. Links to other files open in Notepad++, and web links open in the browser.
+
+![Tables and math](docs/screenshot-math.png)
+
+#### Navigation
+
+- Two-way scroll sync with the editor. Click in the preview to move the caret to that line.
+- Table of contents sidebar that follows the scroll position.
+- Find in preview (Ctrl+F, F3, Shift+F3) and zoom (Ctrl+wheel, Ctrl+Plus, Ctrl+Minus, Ctrl+0).
+- Opens automatically for Markdown files (configurable).
+
+#### Themes and export
+
+- Light and dark themes. The Auto theme follows the colors of the Notepad++ editor theme.
+- Export to a single self-contained HTML file with highlighting and math, to PDF (A4 or Letter) and to Word (DOCX).
+
+![Dark theme](docs/screenshot-dark.png)
 
 ### Requirements
 
 - Windows 10 or 11 (x64, x86 or ARM64)
 - Notepad++ 8.4.1 or newer (tested with 8.9.8 and 8.9.9)
-- Microsoft Edge WebView2 Runtime (preinstalled on Windows 11 and on up-to-date Windows 10)
+- Microsoft Edge WebView2 Runtime
+
+#### Installing WebView2
+
+WebView2 is already part of Windows 11 and up-to-date Windows 10. To check, look for **Microsoft Edge WebView2 Runtime** in Settings → Apps → Installed apps. If it is missing, the panel shows a message with a download link.
+
+1. Download the installer from Microsoft: [MicrosoftEdgeWebview2Setup.exe](https://go.microsoft.com/fwlink/p/?LinkId=2124703) (from the [WebView2 page](https://developer.microsoft.com/microsoft-edge/webview2/), "Evergreen Bootstrapper").
+2. Run it. It downloads and installs the runtime, and Windows keeps it up to date.
+3. Reopen the preview panel or restart Notepad++.
+
+Or run `winget install Microsoft.EdgeWebView2Runtime` in a terminal.
 
 ### Installation
 
@@ -67,8 +94,6 @@ Notepad++ opens new side panels narrow. Drag the panel border to the width you l
 | Back to the editor | Esc in the preview |
 
 The shortcut can be changed in Settings → Shortcut Mapper → Plugin commands.
-
-![Tables and math](docs/screenshot-math.png)
 
 ### Settings
 
@@ -103,32 +128,59 @@ MahiMarkD++ is free software under the [GNU General Public License v3.0](LICENSE
 
 ## 🇷🇺 Русский
 
-MahiMarkD++ показывает текущий документ в панели рядом с редактором и обновляет её, пока вы печатаете и прокручиваете текст. Разбор идёт в фоновом потоке, а на странице меняются только изменённые блоки, поэтому даже файл на 10 МБ не тормозит.
+MahiMarkD++ показывает готовый документ в панели рядом с редактором и обновляет её, пока вы печатаете и прокручиваете текст. Это нативный код на Rust: плагин поставляется одной DLL, в которой уже есть всё нужное.
 
-![MahiMarkD++ в светлой теме](docs/screenshot-light.png)
+![Редактор и превью рядом](docs/screenshot-light.png)
+
+### Почему MahiMarkD++
+
+- **Нативный и лёгкий.** Написан на Rust: скорость нативного кода и безопасная работа с памятью без сборщика мусора. Одна DLL на 3 МБ содержит рендерер, highlight.js, KaTeX и шрифты. Не нужны .NET, Java, Python, Visual C++ Redistributable и установщик.
+- **Редактор никогда не ждёт.** Разбор Markdown идёт в фоновом потоке, а на странице обновляются только изменённые блоки. Файл на 10 МБ и 200 000 строк открывается примерно за 0,75 с, правки появляются примерно за 0,4 с.
+- **Современная отрисовка.** Превью работает на Microsoft Edge WebView2 (Chromium), поэтому таблицы, шрифты, эмодзи и экраны с высоким DPI выглядят как в современном браузере.
+- **Приватно и без интернета.** Никакой телеметрии и онлайн-сервисов. В сеть уходят только запросы картинок, на которые ссылается сам документ.
+- **Безопасен для чужих файлов.** HTML внутри Markdown очищается, скрипты из документа не выполняются, а страница может загружать только файлы самого плагина.
+- **Экспорт без сторонних программ.** HTML, PDF и Word (DOCX) встроены. Не нужны Pandoc, Word или отдельный браузер.
 
 ### Возможности
 
-- GitHub Flavored Markdown: таблицы, списки задач, зачёркивание, сноски, блоки `> [!NOTE]`, YAML front matter, якоря заголовков.
-- Подсветка синтаксиса в блоках кода (highlight.js) и кнопка копирования.
-- Формулы KaTeX: `$строчные$`, `$$выносные$$` и блоки ```` ```math ````.
-- Синхронная прокрутка в обе стороны; клик в превью ставит курсор редактора на эту строку.
-- Боковое оглавление, которое следит за прокруткой.
-- Поиск в превью (Ctrl+F, F3, Shift+F3), масштаб (Ctrl+колесо, Ctrl+Плюс, Ctrl+Минус, Ctrl+0).
-- Локальные картинки и относительные ссылки; ссылки на другие файлы открываются в Notepad++, веб-ссылки в браузере.
-- HTML внутри Markdown разрешён, но очищается: скрипты, обработчики событий и опасные ссылки удаляются.
-- Светлая и тёмная темы; тема Auto берёт цвета текущей темы редактора Notepad++.
-- Экспорт в HTML (один файл с подсветкой и формулами), PDF и Word (DOCX).
-- Автоматически открывается для Markdown-файлов (настраивается).
-- Рассчитан на большие документы: обновляются только изменения, подсветка и формулы считаются по мере прокрутки, невидимая часть не отрисовывается.
+#### Markdown
 
-![MahiMarkD++ в тёмной теме](docs/screenshot-dark.png)
+- GitHub Flavored Markdown: таблицы, списки задач, зачёркивание, сноски, блоки `> [!NOTE]`, YAML front matter, якоря заголовков.
+- Подсветка синтаксиса в блоках кода и кнопка копирования.
+- Формулы KaTeX: `$строчные$`, `$$выносные$$` и блоки ```` ```math ````.
+- Локальные картинки и относительные ссылки. Ссылки на другие файлы открываются в Notepad++, веб-ссылки в браузере.
+
+![Таблицы и формулы](docs/screenshot-math.png)
+
+#### Навигация
+
+- Синхронная прокрутка в обе стороны. Клик в превью ставит курсор редактора на эту строку.
+- Боковое оглавление, которое следит за прокруткой.
+- Поиск в превью (Ctrl+F, F3, Shift+F3) и масштаб (Ctrl+колесо, Ctrl+Плюс, Ctrl+Минус, Ctrl+0).
+- Автоматически открывается для Markdown-файлов (настраивается).
+
+#### Темы и экспорт
+
+- Светлая и тёмная темы. Тема Auto берёт цвета текущей темы редактора Notepad++.
+- Экспорт в один самодостаточный HTML-файл с подсветкой и формулами, в PDF (A4 или Letter) и в Word (DOCX).
+
+![Тёмная тема](docs/screenshot-dark.png)
 
 ### Требования
 
 - Windows 10 или 11 (x64, x86 или ARM64)
 - Notepad++ 8.4.1 или новее (проверено на 8.9.8 и 8.9.9)
-- Microsoft Edge WebView2 Runtime (уже есть в Windows 11 и в обновлённой Windows 10)
+- Microsoft Edge WebView2 Runtime
+
+#### Установка WebView2
+
+WebView2 уже входит в Windows 11 и обновлённую Windows 10. Проверить можно в Параметры → Приложения → Установленные приложения: там должен быть **Microsoft Edge WebView2 Runtime**. Если его нет, панель покажет сообщение со ссылкой на загрузку.
+
+1. Скачайте установщик с сайта Microsoft: [MicrosoftEdgeWebview2Setup.exe](https://go.microsoft.com/fwlink/p/?LinkId=2124703) (со [страницы WebView2](https://developer.microsoft.com/microsoft-edge/webview2/), пункт «Evergreen Bootstrapper»).
+2. Запустите его. Он скачает и установит среду, а дальше Windows будет обновлять её сама.
+3. Откройте панель превью заново или перезапустите Notepad++.
+
+Или выполните в терминале `winget install Microsoft.EdgeWebView2Runtime`.
 
 ### Установка
 
@@ -149,8 +201,6 @@ MahiMarkD++ показывает текущий документ в панели
 | Вернуться в редактор | Esc в превью |
 
 Горячую клавишу можно сменить в Settings → Shortcut Mapper → Plugin commands.
-
-![Таблицы и формулы](docs/screenshot-math.png)
 
 ### Настройки
 
