@@ -58,6 +58,7 @@ button {
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border-soft);
   user-select: none;
+  overflow: hidden;
 }
 
 #bar .spacer {
@@ -137,8 +138,11 @@ button {
   right: 10px;
   z-index: 30;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   gap: 2px;
+  max-width: calc(100% - 20px);
+  box-sizing: border-box;
   padding: 4px;
   font-family: var(--ui-font);
   font-size: 12px;
@@ -146,6 +150,7 @@ button {
   border-radius: 8px;
   background: var(--bg);
   box-shadow: var(--shadow);
+  overflow: hidden;
 }
 
 #find[hidden],
@@ -156,7 +161,8 @@ button {
 }
 
 #find-input {
-  width: 180px;
+  flex: 1 1 180px;
+  min-width: 60px;
   height: 24px;
   padding: 0 8px;
   box-sizing: border-box;
@@ -168,6 +174,12 @@ button {
   outline: none;
 }
 
+@media (max-width: 300px) {
+  #find {
+    flex-wrap: wrap;
+  }
+}
+
 #find-input:focus {
   border-color: var(--accent);
 }
@@ -177,11 +189,18 @@ button {
 }
 
 #find-count {
+  flex: none;
   min-width: 52px;
   padding: 0 4px;
   color: var(--muted);
   text-align: center;
   font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 300px) {
+  #find-count {
+    min-width: 0;
+  }
 }
 
 #find-case {
@@ -280,6 +299,16 @@ body.toc-open #toc {
   box-shadow: var(--shadow);
 }
 
+@media (max-width: 480px) {
+  #settings {
+    padding: 8px;
+  }
+
+  .sheet {
+    padding: 14px 12px 10px;
+  }
+}
+
 .sheet h2 {
   display: flex;
   align-items: center;
@@ -292,6 +321,7 @@ body.toc-open #toc {
 }
 
 .sheet fieldset {
+  min-width: 0;
   margin: 0 0 12px;
   padding: 0;
   border: 0;
@@ -309,13 +339,14 @@ body.toc-open #toc {
 
 .row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 4px 12px;
   min-height: 32px;
 }
 
 .row > span {
-  flex: 1;
+  flex: 1 1 120px;
 }
 
 .row small {
@@ -328,6 +359,7 @@ body.toc-open #toc {
 .row input[type="number"],
 .row select {
   width: 190px;
+  max-width: 100%;
   height: 26px;
   box-sizing: border-box;
   padding: 0 7px;

@@ -588,6 +588,7 @@
           // Keep the raw id.
         }
         jumpToId(id);
+        if (tocNav.contains(link) && !window.matchMedia('(min-width: 760px)').matches) setTocOpen(false, false);
       } else if (href) {
         send({ t: 'link', href });
       }

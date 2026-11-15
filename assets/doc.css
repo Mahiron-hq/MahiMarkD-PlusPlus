@@ -88,6 +88,18 @@ body {
   padding: 20px 28px 40vh;
 }
 
+@media (max-width: 480px) {
+  .markdown-body {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+.markdown-body sup,
+.markdown-body sub {
+  line-height: 0;
+}
+
 .markdown-body > .b {
   display: flow-root;
   margin: 0 0 16px;
