@@ -13,13 +13,20 @@
 [![Arch](https://img.shields.io/badge/arch-x64%20%7C%20x86%20%7C%20ARM64-555?style=flat-square)](#)
 [![Rust](https://img.shields.io/badge/Rust-2024-CE422B?style=flat-square&logo=rust&logoColor=white)](https://www.rust-lang.org/)
 
-**[English](#-english)** · **[Русский](#-русский)**
+**[English](#english)** · **[Русский](#русский)**
 
 </div>
 
+| | |
+|---|---|
+| Platform | Windows 10/11, Notepad++ 8.4.1+ (x64, x86, ARM64) |
+| License | GPL-3.0 |
+| Download | [Releases](https://github.com/Mahiron-hq/MahiMarkD-PlusPlus/releases/latest) |
+| Languages | English, Russian |
+
 ---
 
-## 🇬🇧 English
+## English
 
 MahiMarkD++ shows the rendered document in a panel next to the editor and keeps it in sync while you type and scroll. It is native code written in Rust and ships as a single DLL with everything inside.
 
@@ -126,7 +133,7 @@ MahiMarkD++ is free software under the [GNU General Public License v3.0](LICENSE
 
 ---
 
-## 🇷🇺 Русский
+## Русский
 
 MahiMarkD++ показывает готовый документ в панели рядом с редактором и обновляет её, пока вы печатаете и прокручиваете текст. Это нативный код на Rust: плагин поставляется одной DLL, в которой уже есть всё нужное.
 
@@ -229,4 +236,4 @@ cargo build --release
 
 Copyright (C) 2026 Lev Burmistrov (Mahiron-hq).
 
-MahiMarkD++ — свободная программа под лицензией [GNU General Public License v3.0](LICENSE). Сторонние компоненты и их лицензии перечислены в [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+MahiMarkD++ - свободная программа под лицензией [GNU General Public License v3.0](LICENSE). Сторонние компоненты и их лицензии перечислены в [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
